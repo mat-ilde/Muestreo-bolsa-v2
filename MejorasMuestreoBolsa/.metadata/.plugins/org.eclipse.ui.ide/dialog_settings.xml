@@ -5,5 +5,18 @@
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/mati/eclipse-workspace/desarrolloweb/proyectosweb"/>
+			<item value="/home/mati/eclipse-workspace/desarrolloweb/proyectosweb/MejorasMuestreoBolsa/src"/>
+			<item value="/home/mati/eclipse-workspace/desarrolloweb/proyectosweb/MejorasMuestreoBolsa/src/main"/>
+			<item value="/home/mati/eclipse-workspace/desarrolloweb/proyectosweb/MejorasMuestreoBolsa"/>
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="701"/>
+		<item key="DIALOG_Y_ORIGIN" value="130"/>
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_HEIGHT" value="589"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|10.0|0|GTK|1|"/>
 	</section>
 </section>

@@ -1,17 +1,23 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import mejoras.bolsa.web.CarteraMejora;
 import mejoras.bolsa.web.HistoricoOperacionMejora;
 import mejoras.bolsa.web.OperacionMejora;
 import mysql.MysqlCartera;
-import mysql.MysqlHistoricoOperacionDao;
-import mysql.MysqlOperacionDAO;
+import mysql.MysqlHistoricoOperacionDAO;
+import mysql.MysqlOperacionActualDao;
+
+import java.util.Random;
+import java.util.UUID;
+
 
 public class Main {
 
@@ -20,49 +26,74 @@ public class Main {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Mejorabolsa", "root", "hola123");
-			// creo un objeto operaciondao y le añado una nueva conexión //arreglar las
-			// fechas!!!
+			// creating an operaciondao object and connected with a new connection
 
-			OperacionDao dao = new MysqlOperacionDAO(conn);
-
-			HistoricoOperacionDao h = new MysqlHistoricoOperacionDao(conn);
-			// creo un objeto operacion
-			@SuppressWarnings("deprecation")
-			OperacionMejora operacionGoogle = new OperacionMejora("Google", (float) 250.00, 25, "compra",
-					new Date(2020, 10, 25));
-
-			@SuppressWarnings("deprecation")
-			OperacionMejora operacionAmazon = new OperacionMejora("Amazon", (float) 150.00, 25, "compra",
-					new Date(2019, 05, 12));
-
-			@SuppressWarnings("deprecation")
-			OperacionMejora operacionApple = new OperacionMejora("Apple", (float) 100.00, 25, "compra",
-					new Date(2018, 07, 15));
-
-			HistoricoOperacionMejora historico = new HistoricoOperacionMejora("Google", (float) 250.00, "compra",
-					new Date(2020, 10, 25), 500);
-			HistoricoOperacionMejora historic = new HistoricoOperacionMejora("Google", (float) 225.00, "compra",
-					new Date(2020, 10, 25), 500);
-
-			//System.out.println(h.getOperaciones());
-
-			/*h.insertBbdd(operacionApple);
-			h.insertBbdd(operacionAmazon);
-			h.insertBbdd(operacionGoogle); // le agrego un nuevo precio
-			// operacion.setPrecio(25.00); // añado esa operación a la base de datos
-			/*
-			 * dao.insertBbdd(operacionGoogle); dao.insertBbdd(operacionAmazon);
-			 * dao.insertBbdd(operacionApple); //dao.getOperacion("Amazon");
-			 * 
-			 * // crearía una lista porque ese método devuelve un array
-			 * /*List<OperacionMejora> operaciones=dao.getOperaciones(); for(OperacionMejora
-			 * a:operaciones) { System.out.println(); }
-			 */
-			// trae las operaciones desde la base de datos a través de la clase carpeta
-			//CarteraMejora cartera =new CarteraMejora(h);
-			MysqlCartera cartera=new MysqlCartera (operacionAmazon, conn);
-			cartera.getCartera();
+			//HACER QUE SE ACTUALICE LA INFORMACIÓN DE LAS ACCIONES AL VENDERLAS EN OPERACION ACTUAL
 			
+			OperacionActualDao opActual = new MysqlOperacionActualDao(conn);
+			OperacionDao nuevaConexion= new MysqlHistoricoOperacionDAO(conn);
+			//OperacionMejora obtenerId=new OperacionMejora();
+			/*function call to set random Id
+			obtenerId.setId();
+			//function call to get an Id
+			UUID id = obtenerId.getId();*/
+
+			String fechaOperacionGoogle = "2016-03-31";
+			Date datefechaOperacionGoogle = Date.valueOf(fechaOperacionGoogle);// converting string into sql date
+			//OperacionActualDao h = new MysqlOperacionActualDao(conn);
+
+			// creating an operacion object
+			OperacionMejora operacionGoogle = new OperacionMejora("GOOC20150331","Google", (float) 350.00, 15, "compra",
+					datefechaOperacionGoogle);
+			OperacionMejora operacionGoogleVenta = new OperacionMejora("GOOV20160331","Google", (float) 350.00, 15, "venta",
+					datefechaOperacionGoogle);
+			
+			// converting date as string
+			String fechaOperacionAmazon = "2016-03-31";
+			Date datefechaOperacionAmazon = Date.valueOf(fechaOperacionAmazon);// converting string into sql date
+			
+			OperacionMejora operacionAmazon = new OperacionMejora("AMZC20150331","Amazon", (float) 150.00, 10, "compra",
+					datefechaOperacionAmazon);
+			OperacionMejora operacionAmazonVenta = new OperacionMejora("AMZV20160331","Amazon", (float) 150.00, 5, "venta",
+					datefechaOperacionAmazon);
+
+			
+			String fechaOperacionApple = "2016-03-31";
+			Date datefechaOperacionApple = Date.valueOf(fechaOperacionApple);// converting string into sql date
+			
+			OperacionMejora operacionApple = new OperacionMejora("APPC20150331","Apple", (float) 100.00, 25, "compra",
+					datefechaOperacionApple);
+			OperacionMejora operacionAppleVenta = new OperacionMejora("APPV20160331","Apple", (float) 100.00, 15, "venta",
+					datefechaOperacionApple);
+
+			HistoricoOperacionMejora historicoGoogle = new HistoricoOperacionMejora();
+								
+			//nuevaConexion.insertBbdd(operacionApple);
+			
+			
+			//nuevaConexion.TotalAccions(operacionGoogle, "Google");
+			//String n=s.getTicker();
+			//System.out.println(operacionAppleVenta.getTicker());
+			
+			
+			nuevaConexion.sellActions(operacionAppleVenta, "Apple");
+			//nuevaConexion.getOperacion("Amazon");	
+			//opActual.updateData(operacionApple);
+			
+			//RETRIEVE THE OPERACIONS FROM DDBB
+			//MysqlHistoricoOperacionDao my= new MysqlHistoricoOperacionDao(conn);
+			/*for(OperacionMejora a: carteraGoogles.getRecordOperaciones()) {
+				System.out.println(a);
+			}*/
+			//carteraGoogles.getOp();
+			
+			
+			//System.out.println(historicoApple.getRecordOperaciones());	
+					
+			//Así es como tiene que salir en historico de operacion
+			//System.out.println(carteraGoogleVenta.getCartera());
+			//System.out.println(carteraGoogles.getCartera());
+
 		} finally {
 
 			if (conn != null) {

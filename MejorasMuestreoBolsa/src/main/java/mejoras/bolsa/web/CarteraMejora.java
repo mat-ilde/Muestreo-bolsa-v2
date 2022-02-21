@@ -4,26 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.DaoExceptions;
-import dao.HistoricoOperacionDao;
-import mysql.MysqlHistoricoOperacionDao;
+import dao.OperacionActualDao;
+import mysql.MysqlOperacionActualDao;
 
 public class CarteraMejora {
-
-	private MysqlHistoricoOperacionDao historico;
-
-	private List<CarteraMejora> operaciones = new ArrayList<CarteraMejora>();
 	
-	public CarteraMejora(HistoricoOperacionDao historico) {
-		this.historico = (MysqlHistoricoOperacionDao) historico;
+	private ArrayList<OperacionMejora> operaciones=new ArrayList();
+	public CarteraMejora() {
 
 	}
 
-	public List<OperacionMejora> getAcciones(HistoricoOperacionDao historico) throws DaoExceptions {
-		return historico.getOperaciones();
+	public List<OperacionMejora> getOperacionesRecientes() {
+		return operaciones;
 
 	}
-	
-		
+
 }
-	
-

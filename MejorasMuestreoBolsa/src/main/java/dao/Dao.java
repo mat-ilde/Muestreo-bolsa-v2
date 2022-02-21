@@ -10,10 +10,14 @@ import mejoras.bolsa.web.OperacionMejora;
 public interface Dao<clase, tipoDatoClavePrimaria> {
 	
 	void insertBbdd(clase a) throws DaoExceptions;
-	
+	void deleteData(clase a) throws DaoExceptions;
+	void updateData(clase a,String b) throws DaoExceptions;
 	List<OperacionMejora> getOperaciones()throws DaoExceptions;
+
+	List<OperacionMejora> getActualOperaciones() throws DaoExceptions;
+	int TotalAccions(OperacionMejora operacion,String ticker) throws DaoExceptions;
+	public void sellActions(OperacionMejora operacion,String ticker)throws DaoExceptions;
 	
-	clase getOperacion(float id) throws DaoExceptions, Exception;
 
 
 	

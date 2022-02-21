@@ -1,30 +1,48 @@
 package mejoras.bolsa.web;
 
 import java.sql.Date;
+import java.util.UUID;
+
+//import java.sql.Date;
 
 public class OperacionMejora {
-	
+	//In case I want to use UUID
+	//private UUID Id;
+	private String Id;
 	private String ticker;
 	private float precio;
 	private int numeroAcciones;
 	private String tipoOperacion;
 	private Date fecha;
 	
-	public OperacionMejora(String ticker, float precio, int numeroAcciones, String tipoOperacion, java.util.Date fecha) {
+	public OperacionMejora(String Id,String ticker, float precio, int numeroAcciones, String tipoOperacion, java.util.Date  fecha) {
 		super();
+		this.Id = Id;
 		this.ticker = ticker;
 		this.precio = precio;
 		this.numeroAcciones = numeroAcciones;
 		this.tipoOperacion = tipoOperacion;
 		this.fecha = (Date) fecha;
 	}
-
-	public Date getFecha() {
-		return fecha;
+	public OperacionMejora() {
+		
 	}
-
+	
+	public void setId(String Id ) {
+		//UUID uuid=UUID.randomUUID();
+		this.Id = Id;
+	}
+	/*public UUID getId() {
+		return Id;
+	}*/
+	public String getId() {
+		return Id;
+	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	public Date getFecha() {
+		return fecha;
 	}
 
 	public void setPrecio(float precio) {
@@ -53,11 +71,11 @@ public class OperacionMejora {
 
 	@Override
 	public String toString() {
-		return " ticker " + ticker + " precio " + precio + " numeroAcciones " + numeroAcciones
-				+ "  tipoOperacion " + tipoOperacion + " fecha " + fecha ;
+		return " Id " + Id + " Ticker " + ticker + " Precio " + precio + " Número de acciones a día de hoy " + numeroAcciones
+				+ "  Tipo de operación realizada " + tipoOperacion + " fecha " + fecha ;
 	}
 
-	public void setNumeroOperaciones(int numeroOperaciones) {
+	public void setNumeroAcciones(int numeroOperaciones) {
 		this.numeroAcciones = numeroOperaciones;
 	}
 
@@ -67,6 +85,9 @@ public class OperacionMejora {
 
 	public void setTipoOperacion(String tipoOperacion) {
 		this.tipoOperacion = tipoOperacion;
+	}
+	public OperacionMejora getOperacion() {
+		return this;
 	}
 	
 }
